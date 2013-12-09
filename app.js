@@ -30,17 +30,17 @@ if ('development' == app.get('env')) {
 
 // Application initialization
 var connection = mysql.createConnection({
-  host     : '192.168.2.202',
-  port     : '10536',
-  user     : 'azx89dmdejr8gcfu',
-  password : 'aadvmwqf8mifftakodiuec2b90a3awta',
-  database : "demo_db"
+  host     : 'localhost',
+  port     : '',
+  user     : 'root',
+  password : '',
+  database : "ntest"
 });
 
 // Database setup
-connection.query('CREATE DATABASE IF NOT EXISTS demo_db', function (err) {
+connection.query('CREATE DATABASE IF NOT EXISTS ntest', function (err) {
   if (err) throw err;
-  connection.query('USE demo_db', function (err) {
+  connection.query('USE ntest', function (err) {
     if (err) throw err;
     connection.query('CREATE TABLE IF NOT EXISTS user(' +
       'id INT NOT NULL AUTO_INCREMENT,' +  
@@ -52,11 +52,11 @@ connection.query('CREATE DATABASE IF NOT EXISTS demo_db', function (err) {
 });
 
 // connection.connect();
-app.get('/users', function (req, res) {
-connection.query('select * from user', function(err, docs) {
-    res.render('users', {users: docs, title: 'App42PaaS Express MySql Application'});
-  });
-});
+// app.get('/users', function (req, res) {
+//   connection.query('select * from user', function(err, docs) {
+//     res.render('users', {users: docs, title: 'App42PaaS Express MySql Application'});
+//   });
+// });
 
 // Add a new User
 app.get("/users/new", function (req, res) {
@@ -72,7 +72,7 @@ app.post("/users", function (req, res) {
   var des=req.body.des;
   connection.query('INSERT INTO user (name,email,des) VALUES (?,?,?);' , [name,email,des], function(err, docs) {
   if (err) res.json(err);
-    res.redirect('users');
+    res.redirect('/');
   });
 });
 
@@ -83,7 +83,7 @@ http.createServer(app).listen(app.get('port'), function(){
 
 // App root
 app.get('/', function(req, res){
-  res.redirect('/users', {
-    title: 'App42PaaS Express MySql Application'
+  connection.query('select * from user', function(err, docs) {
+    res.render('users', {users: docs, title: 'App42PaaS Express MySql Application'});
   });
 });
