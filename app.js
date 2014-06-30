@@ -30,17 +30,17 @@ if ('development' == app.get('env')) {
 
 // Application initialization
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  port     : '',
-  user     : 'root',
-  password : '',
-  database : "ntest"
+  host     : '54.208.130.57',
+  port     : '48668',
+  user     : 'a94xepztww52z4gr',
+  password : 'atzzagmjxe428o4h9yartlexylcdh2rs',
+  database : "demo_db"
 });
 
 // Database setup
-connection.query('CREATE DATABASE IF NOT EXISTS ntest', function (err) {
+connection.query('CREATE DATABASE IF NOT EXISTS demo_db', function (err) {
   if (err) throw err;
-  connection.query('USE ntest', function (err) {
+  connection.query('USE demo_db', function (err) {
     if (err) throw err;
     connection.query('CREATE TABLE IF NOT EXISTS user(' +
       'id INT NOT NULL AUTO_INCREMENT,' +  
