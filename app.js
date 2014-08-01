@@ -30,10 +30,10 @@ if ('development' == app.get('env')) {
 
 // Application initialization
 var connection = mysql.createConnection({
-  host     : '54.208.130.57',
-  port     : '48668',
-  user     : 'a94xepztww52z4gr',
-  password : 'atzzagmjxe428o4h9yartlexylcdh2rs',
+  host     : '192.168.3.241',
+  port     : '2263',
+  user     : 'axt89wb0zbjdvibt',
+  password : 'a0d9kqk4cnbo3h4617ithoh7lxx6gcwr',
   database : "demo_db"
 });
 
